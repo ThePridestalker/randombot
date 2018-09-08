@@ -1,0 +1,19 @@
+-añadir control de usuarios. coger un usuario del chat y meter sus datos en un objeto para poder mostrarlos en el chat.
+asi puedo banear a la gente que se crea la cuenta hace 2 minutos :)
+
+
+
+HACER UN DICCIONARIO TIPO
+const funcs = {
+    'followage':followage()
+}
+
+para poder ejecutar comandos desde el cmd
+Tambien tendria que crear una funcion que compruebe el response
+del comando para devolver la respuesta desde el metodo equivalente
+en el diccionario.
+
+crear comando !followage axelinho95 nuuls
+comprobar el commandName (!followage en este caso)
+si el commandName está en el diccionario, ejecutar la funcion correspondiente
+en dicha funcion, con salida client.say()
