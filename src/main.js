@@ -16,7 +16,7 @@ var options = {
     },
     identity: {
         username: "randomnoname",
-        password: "oauth:rnlawakbaon6pi7h6w65f1xlp7gxli"
+        password: "oauth:XXXXXX"//changed to upload to github
     },
     channels: ["#nuuls", "#axelinho95"]
 }

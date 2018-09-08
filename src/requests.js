@@ -1,7 +1,7 @@
 var api = require("twitch-api-v5")
 
 //registered app on https://glass.twitch.tv/login and got a client ID
-api.clientID = "gcngrv89bd90r7k41ikslwj143443q"
+api.clientID = "XXXXXX" //changed to upload to github
 
 getUserData("nuuls")
 
