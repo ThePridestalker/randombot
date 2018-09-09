@@ -1,7 +1,4 @@
--añadir control de usuarios. coger un usuario del chat y meter sus datos en un objeto para poder mostrarlos en el chat.
-asi puedo banear a la gente que se crea la cuenta hace 2 minutos :)
-
-
+ADD A FOLDER OR A FILE WITH THE DATA LIKE OATH AND CLIENT ID AND PUT IT IN GITIGNORE
 
 HACER UN DICCIONARIO TIPO
 const funcs = {
