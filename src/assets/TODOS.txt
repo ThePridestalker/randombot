@@ -1,4 +1,7 @@
-ADD A FOLDER OR A FILE WITH THE DATA LIKE OATH AND CLIENT ID AND PUT IT IN GITIGNORE
+-Probablemente separar los comandos de generales tipo add delet edit join part
+para limpiar el mainjs haciendo que se encargue unicamente de mandar a ejecutar 
+esos comandos
+
 
 HACER UN DICCIONARIO TIPO
 const funcs = {
