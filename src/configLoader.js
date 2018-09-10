@@ -36,7 +36,7 @@ const options = {
 
 module.exports = {
 
-  loadData() {
+  getOptionsConst() {
     return options;
   },
   // MOVER ESTOS COMANDOS JUNTO CON EL RESTO DE COMANDOS GENERICOS
@@ -49,7 +49,9 @@ module.exports = {
     const index = options.channels.indexOf(channel);
     if (index > -1) {
       options.channels.splice(index, 1);
+      return true;
     }
+    return false;
   },
 
 };

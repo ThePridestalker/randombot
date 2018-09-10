@@ -3,12 +3,10 @@ const tmi = require('tmi.js');
 const dateManager = require('./dateManager');
 const configLoader = require('./configLoader');
 
-const msgDateFileLength = fs.readFileSync('assets/lastMsgDate.txt').toString().length;
-
 //! command | newcommandname | whatever you want the bot to say
 const theoneandonlyregex = /^!([^\s\n]+)\s?([^\s\n]+)?(.+)?/g;
 // loading the user/password/requestID etc...
-const client = new tmi.Client(configLoader.loadData());
+const client = new tmi.Client(configLoader.getOptionsConst());
 
 function doCommand(channel, command) {
   const commandListJsonObj = JSON.parse(fs.readFileSync('assets/commands.json'));
@@ -76,7 +74,7 @@ function editCommand(channel, commandToEdit, reply) {
 
 
 function executeCommand(channel, user, command, firstArg, secArg) {
-  if (msgDateFileLength === 0 || dateManager.compareTimes()) {
+  if (dateManager.compareTimes()) {
     if (user.mod) { // if you are mod you can do commands and add, delet, edit
       if (command === 'addcmd' || command === 'deletecmd' || command === 'editcmd') {
         switch (command) {

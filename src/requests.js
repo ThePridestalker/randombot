@@ -1,7 +1,7 @@
 const api = require('twitch-api-v5');
 const configLoader = require('./configLoader');
 // registered app on https://glass.twitch.tv/login and got a client ID
-api.clientID = configLoader; // changed to upload to github
+api.clientID = configLoader.getOptionsConst().identity.requestsID; // changed to upload to github
 
 
 // pagina de documentacion: https://www.npmjs.com/package/twitch-api-v5
