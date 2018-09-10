@@ -1,37 +1,12 @@
 const fs = require('fs');
 const tmi = require('tmi.js');
 const dateManager = require('./dateManager');
-
-const msgDateFileLength = fs.readFileSync('assets/lastMsgDate.txt').toString().length;
+const configLoader = require('./configLoader');
 
 //! command | newcommandname | whatever you want the bot to say
 const theoneandonlyregex = /^!([^\s\n]+)\s?([^\s\n]+)?(.+)?/g;
-
-const options = {
-  options: {
-    debug: true,
-  },
-  connection: {
-    reconnect: true,
-  },
-  identity: {
-    // TODO: READ THIS FROM CONFIG FILE
-    username: 'randomnoname',
-    // https://twitchapps.com/tmi/ for oath
-    password: 'oauth:XXXXXX', // changed to upload to github
-  },
-  channels: ['#nuuls', '#axelinho95'],
-};
-const client = new tmi.Client(options);
-
-// func to initialize lastMsgDate and commands files
-(() => {
-  // saves the date in lastMsgDate to avoid a NaM in the if condition for date comparison
-  dateManager.saveDate();
-  // writes [] (empty object) inside commands.json
-  const initialObject = '[]';
-  fs.writeFileSync('assets/commands.json', initialObject, 'utf8');
-})();
+// loading the user/password/requestID etc...
+const client = new tmi.Client(configLoader.getOptionsConst());
 
 function doCommand(channel, command) {
   const commandListJsonObj = JSON.parse(fs.readFileSync('assets/commands.json'));
@@ -99,9 +74,8 @@ function editCommand(channel, commandToEdit, reply) {
 
 
 function executeCommand(channel, user, command, firstArg, secArg) {
-  if (msgDateFileLength === 0 || dateManager.compareTimes()) {
-    console.log(`SOY MOD? ${user.mod}`);
-    if (user.mod) {
+  if (dateManager.compareTimes()) {
+    if (user.mod) { // if you are mod you can do commands and add, delet, edit
       if (command === 'addcmd' || command === 'deletecmd' || command === 'editcmd') {
         switch (command) {
           case 'addcmd':
@@ -116,10 +90,10 @@ function executeCommand(channel, user, command, firstArg, secArg) {
           default:
             break;
         }
-      } else { // if you are mod you can do commands
+      } else {
         doCommand(channel, command);
       }
-    } else { // if you are not mod you can do commands but not the add delet or edit
+    } else { // if you are not mod you can do commands but not the add, delet or edit
       doCommand(channel, command);
     }
   }
@@ -153,6 +127,7 @@ function listen() {
     }
   });
 }
+
 
 // Connect the client to the server..
 client.connect().then(() => {
